@@ -20,11 +20,26 @@ jobs:
     - name: Build engine
       run: make
 
-    - name: Organise Artifacts
-      run: make organiseArtifacts
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: Jint-Game-Engine_Linux-x86_64
+        path: bin/Linux/x86_64/Release/Jint-Game-Engine_Linux-x86_64
+    
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: Jint-Game-Engine_Linux-x86_64_Debug
+        path: bin/Linux/x86_64/Debug/Jint-Game-Engine_Linux-x86_64_Debug
 
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: Jint-Game-Engine-Artifacts
-        path: temp-artifacts/**
+        name: Jint-Game-Engine_Windows-x86_64
+        path: bin/Windows/x86_64/Release/Jint-Game-Engine_Windows-x86_64
+    
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: Jint-Game-Engine_Windows-x86_64_Debug
+        path: bin/Windows/x86_64/Debug/Jint-Game-Engine_Windows-x86_64_Debug
