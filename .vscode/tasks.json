@@ -2,34 +2,28 @@
     "version": "2.0.0",
     "tasks": [
       {
-        "label": "Build release with Makefile",
-        "type": "shell",
-        "command": "make",
-        "args": ["release"],
-        "group": {
-          "kind": "build",
-          "isDefault": true
-        },
-        "problemMatcher": ["$gcc"],
-        "detail": "Build the project using the Makefile."
-      },
-      {
         "label": "Build debug with Makefile",
         "type": "shell",
         "command": "make",
-        "args": ["debug"],
+        "args": [
+          "LINUX_DEBUG"
+        ],
         "group": {
           "kind": "build",
           "isDefault": true
         },
-        "problemMatcher": ["$gcc"],
+        "problemMatcher": [
+          "$gcc"
+        ],
         "detail": "Build the project with debugging using the Makefile."
       },
       {
         "label": "Clean project",
         "type": "shell",
         "command": "make",
-        "args": ["clean"],
+        "args": [
+          "clean"
+        ],
         "group": "build",
         "problemMatcher": [],
         "detail": "Clean the build files."
