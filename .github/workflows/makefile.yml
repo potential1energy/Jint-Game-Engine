@@ -20,6 +20,9 @@ jobs:
     - name: Build engine
       run: make
 
+    - name: Organise Artifacts
+      run: make organiseArtifacts
+
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4
       with:
