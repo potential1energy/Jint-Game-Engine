@@ -103,7 +103,16 @@ $(OBJ_DIR)/Windows/x86_64/Debug/%.o: $(SRC_DIR)/%.cpp
 
 -include $(OBJS_WINDOWS_DEBUG:.o=.d)
 
+# Artifact management
+
+organiseArtifacts:
+	mkdir -p temp-artifacts
+	cp $(TARGET_LINUX_RELEASE) temp-artifacts
+	cp $(TARGET_LINUX_DEBUG) temp-artifacts
+	cp $(TARGET_WINDOWS_RELEASE) temp-artifacts
+	cp $(TARGET_WINDOWS_DEBUG) temp-artifacts
+
 # Cleanup
 
 clean:
-	rm -rf $(OBJ_DIR) $(BIN_DIR)
+	rm -rf $(OBJ_DIR) $(BIN_DIR) temp-artifacts
