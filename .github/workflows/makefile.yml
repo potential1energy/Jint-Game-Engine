@@ -36,10 +36,10 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: Jint-Game-Engine_Windows-x86_64
-        path: bin/Windows/x86_64/Release/Jint-Game-Engine_Windows-x86_64
+        path: bin/Windows/x86_64/Release/Jint-Game-Engine_Windows-x86_64.exe
     
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4
       with:
         name: Jint-Game-Engine_Windows-x86_64_Debug
-        path: bin/Windows/x86_64/Debug/Jint-Game-Engine_Windows-x86_64_Debug
+        path: bin/Windows/x86_64/Debug/Jint-Game-Engine_Windows-x86_64_Debug.exe
