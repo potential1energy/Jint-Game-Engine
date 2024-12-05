@@ -40,4 +40,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: Jint-Game-Engine_EDITOR_Windows-x86_64
-        path: Engine/bin/Windows/x86_64/**
+        path: Editor/bin/Windows/x86_64/**
