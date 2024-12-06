@@ -30,7 +30,7 @@ LIBS_WINDOWS_RELEASE =
 LIBS_WINDOWS_DEBUG =
 
 # Preprocessor definitions
-PREPROCESSOR_DEFINITIONS_GLOBAL = 
+PREPROCESSOR_DEFINITIONS_GLOBAL =
 PREPROCESSOR_DEFINITIONS_LINUX_RELEASE =
 PREPROCESSOR_DEFINITIONS_LINUX_DEBUG =
 PREPROCESSOR_DEFINITIONS_WINDOWS_RELEASE =
@@ -40,12 +40,13 @@ PREPROCESSOR_DEFINITIONS_WINDOWS_DEBUG =
 SRC_DIR = src
 OBJ_DIR = obj
 BIN_DIR = bin
+HDR_DIR = $(SRC_DIR)/headers
 
 # Targets
-TARGET_LINUX_RELEASE = $(BIN_DIR)/Linux/x86_64/Release/Jint-Game-Engine_ENGINE_Linux-x86_64.a
-TARGET_LINUX_DEBUG = $(BIN_DIR)/Linux/x86_64/Debug/Jint-Game-Engine_ENGINE_Linux-x86_64_Debug.a
-TARGET_WINDOWS_RELEASE = $(BIN_DIR)/Windows/x86_64/Release/Jint-Game-Engine_ENGINE_Windows-x86_64.a
-TARGET_WINDOWS_DEBUG = $(BIN_DIR)/Windows/x86_64/Debug/Jint-Game-Engine_ENGINE_Windows-x86_64_Debug.a
+TARGET_LINUX_RELEASE = $(BIN_DIR)/Linux/x86_64/lib/libJint-Game-Engine_ENGINE_Linux-x86_64.a
+TARGET_LINUX_DEBUG = $(BIN_DIR)/Linux/x86_64/lib/libJint-Game-Engine_ENGINE_Linux-x86_64_Debug.a
+TARGET_WINDOWS_RELEASE = $(BIN_DIR)/Windows/x86_64/lib/libJint-Game-Engine_ENGINE_Windows-x86_64.a
+TARGET_WINDOWS_DEBUG = $(BIN_DIR)/Windows/x86_64/lib/libJint-Game-Engine_ENGINE_Windows-x86_64_Debug.a
 
 SRCS := $(shell find $(SRC_DIR) -name '*.cpp')
 OBJS_LINUX_RELEASE = $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/Linux/x86_64/Release/%.o, $(SRCS))
@@ -53,12 +54,19 @@ OBJS_LINUX_DEBUG = $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/Linux/x86_64/Debug/%.
 OBJS_WINDOWS_RELEASE = $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/Windows/x86_64/Release/%.o, $(SRCS))
 OBJS_WINDOWS_DEBUG = $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/Windows/x86_64/Debug/%.o, $(SRCS))
 
+HEADERS := $(shell find $(HDR_DIR) -type f -name '*.*')
+CPHEADERS := $(patsubst $(HDR_DIR)/%, $(BIN_DIR)/include/%, $(HEADERS))
+
 all: LINUX_RELEASE LINUX_DEBUG WINDOWS_RELEASE WINDOWS_DEBUG
 
-LINUX_RELEASE: $(TARGET_LINUX_RELEASE)
-LINUX_DEBUG: $(TARGET_LINUX_DEBUG)
-WINDOWS_RELEASE: $(TARGET_WINDOWS_RELEASE)
-WINDOWS_DEBUG: $(TARGET_WINDOWS_DEBUG)
+LINUX_RELEASE: $(TARGET_LINUX_RELEASE) $(CPHEADERS)
+LINUX_DEBUG: $(TARGET_LINUX_DEBUG) $(CPHEADERS)
+WINDOWS_RELEASE: $(TARGET_WINDOWS_RELEASE) $(CPHEADERS)
+WINDOWS_DEBUG: $(TARGET_WINDOWS_DEBUG) $(CPHEADERS)
+
+$(BIN_DIR)/include/%: $(HDR_DIR)/%
+	mkdir -p $(dir $@)
+	cp $< $@
 
 # Linux release x86_64 build rules
 

@@ -8,7 +8,7 @@ CXXFLAGS_WINDOWS_RELEASE = -O3 -static-libgcc -static-libstdc++
 CXXFLAGS_WINDOWS_DEBUG = -g -O0 -static-libgcc -static-libstdc++
 
 # Include directories
-INCLUDE_DIRS_GLOBAL = -Ideps/Global/include
+INCLUDE_DIRS_GLOBAL = -Ideps/Global/include -I../Engine/bin/include/
 INCLUDE_DIRS_LINUX_RELEASE = -Ideps/Linux/include
 INCLUDE_DIRS_LINUX_DEBUG = -Ideps/Linux/include
 INCLUDE_DIRS_WINDOWS_RELEASE = -Ideps/Windows/include
@@ -16,20 +16,20 @@ INCLUDE_DIRS_WINDOWS_DEBUG = -Ideps/Windows/include
 
 # Library directories
 LIB_DIRS_GLOBAL = -Ldeps/Global/lib
-LIB_DIRS_LINUX_RELEASE = -Ldeps/Linux/lib
-LIB_DIRS_LINUX_DEBUG = -Ldeps/Linux/lib
-LIB_DIRS_WINDOWS_RELEASE = -Ldeps/Windows/lib
-LIB_DIRS_WINDOWS_DEBUG = -Ldeps/Windows/lib
+LIB_DIRS_LINUX_RELEASE = -Ldeps/Linux/lib -L../Engine/bin/Linux/x86_64/lib
+LIB_DIRS_LINUX_DEBUG = -Ldeps/Linux/lib -L../Engine/bin/Linux/x86_64/lib
+LIB_DIRS_WINDOWS_RELEASE = -Ldeps/Windows/lib -L../Engine/bin/Windows/x86_64/lib
+LIB_DIRS_WINDOWS_DEBUG = -Ldeps/Windows/lib -L../Engine/bin/Windows/x86_64/lib
 
 # Libraries
 LIBS_GLOBAL =
-LIBS_LINUX_RELEASE =
-LIBS_LINUX_DEBUG =
-LIBS_WINDOWS_RELEASE =
-LIBS_WINDOWS_DEBUG =
+LIBS_LINUX_RELEASE = -lJint-Game-Engine_ENGINE_Linux-x86_64
+LIBS_LINUX_DEBUG = -lJint-Game-Engine_ENGINE_Linux-x86_64_Debug
+LIBS_WINDOWS_RELEASE = -lJint-Game-Engine_ENGINE_Windows-x86_64
+LIBS_WINDOWS_DEBUG = -lJint-Game-Engine_ENGINE_Windows-x86_64_Debug
 
 # Preprocessor definitions
-PREPROCESSOR_DEFINITIONS_GLOBAL = 
+PREPROCESSOR_DEFINITIONS_GLOBAL =
 PREPROCESSOR_DEFINITIONS_LINUX_RELEASE =
 PREPROCESSOR_DEFINITIONS_LINUX_DEBUG =
 PREPROCESSOR_DEFINITIONS_WINDOWS_RELEASE =
