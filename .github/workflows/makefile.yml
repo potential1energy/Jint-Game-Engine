@@ -34,7 +34,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: Jint-Game-Engine_ENGINE_Headers
-        path: Editor/bin/include/**
+        path: Engine/bin/include/**
 
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4
