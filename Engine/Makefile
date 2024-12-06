@@ -55,7 +55,7 @@ OBJS_WINDOWS_RELEASE = $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/Windows/x86_64/Re
 OBJS_WINDOWS_DEBUG = $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/Windows/x86_64/Debug/%.o, $(SRCS))
 
 HEADERS := $(shell find $(HDR_DIR) -type f -name '*.*')
-CPHEADERS := $(patsubst $(HDR_DIR)/%, $(BIN_DIR)/include/%, $(HEADERS))
+CPHEADERS := $(patsubst $(HDR_DIR)/%, $(BIN_DIR)/include/JintGE/%, $(HEADERS))
 
 all: LINUX_RELEASE LINUX_DEBUG WINDOWS_RELEASE WINDOWS_DEBUG
 
@@ -64,7 +64,7 @@ LINUX_DEBUG: $(TARGET_LINUX_DEBUG) $(CPHEADERS)
 WINDOWS_RELEASE: $(TARGET_WINDOWS_RELEASE) $(CPHEADERS)
 WINDOWS_DEBUG: $(TARGET_WINDOWS_DEBUG) $(CPHEADERS)
 
-$(BIN_DIR)/include/%: $(HDR_DIR)/%
+$(BIN_DIR)/include/JintGE/%: $(HDR_DIR)/%
 	mkdir -p $(dir $@)
 	cp $< $@
 

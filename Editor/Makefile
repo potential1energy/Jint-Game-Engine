@@ -8,7 +8,7 @@ CXXFLAGS_WINDOWS_RELEASE = -O3 -static-libgcc -static-libstdc++
 CXXFLAGS_WINDOWS_DEBUG = -g -O0 -static-libgcc -static-libstdc++
 
 # Include directories
-INCLUDE_DIRS_GLOBAL = -Ideps/Global/include -I../Engine/bin/include/
+INCLUDE_DIRS_GLOBAL = -Ideps/Global/include -I../Engine/bin/include/JintGE
 INCLUDE_DIRS_LINUX_RELEASE = -Ideps/Linux/include
 INCLUDE_DIRS_LINUX_DEBUG = -Ideps/Linux/include
 INCLUDE_DIRS_WINDOWS_RELEASE = -Ideps/Windows/include
