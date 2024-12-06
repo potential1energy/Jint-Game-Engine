@@ -1,3 +1,5 @@
-bin/
-obj/
+Engine/bin
+Engine/obj
+Editor/bin
+Editor/obj
 .vscode/

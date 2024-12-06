@@ -1,3 +1,6 @@
 #pragma once
 
-void printJint();
+namespace JintGEEn {
+    void Initalize();
+    void Cleanup();
+}

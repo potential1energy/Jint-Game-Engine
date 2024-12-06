@@ -23,8 +23,8 @@ LIB_DIRS_WINDOWS_DEBUG = -Ldeps/Windows/lib -L../Engine/bin/Windows/x86_64/lib
 
 # Libraries
 LIBS_GLOBAL =
-LIBS_LINUX_RELEASE = -lJint-Game-Engine_ENGINE_Linux-x86_64
-LIBS_LINUX_DEBUG = -lJint-Game-Engine_ENGINE_Linux-x86_64_Debug
+LIBS_LINUX_RELEASE = -lJint-Game-Engine_ENGINE_Linux-x86_64 -lX11 -lglad -lGL -lGLX
+LIBS_LINUX_DEBUG = -lJint-Game-Engine_ENGINE_Linux-x86_64_Debug -lX11 -lglad -lGL -lGLX
 LIBS_WINDOWS_RELEASE = -lJint-Game-Engine_ENGINE_Windows-x86_64
 LIBS_WINDOWS_DEBUG = -lJint-Game-Engine_ENGINE_Windows-x86_64_Debug
 
@@ -61,7 +61,7 @@ WINDOWS_DEBUG: $(TARGET_WINDOWS_DEBUG)
 
 # Linux release x86_64 build rules
 
-$(TARGET_LINUX_RELEASE): $(OBJS_LINUX_RELEASE)
+$(TARGET_LINUX_RELEASE): $(OBJS_LINUX_RELEASE) ../Engine/bin/Linux/x86_64/lib/libJint-Game-Engine_ENGINE_Linux-x86_64.a
 	@mkdir -p $(dir $@)
 	$(CXX_LINUX) $(CXXFLAGS_LINUX_RELEASE) -o $@ $^ $(LIB_DIRS_LINUX_RELEASE) $(LIBS_LINUX_RELEASE) $(LIB_DIRS_GLOBAL) $(LIBS_GLOBAL)
 
@@ -73,7 +73,7 @@ $(OBJ_DIR)/Linux/x86_64/Release/%.o: $(SRC_DIR)/%.cpp
 
 # Linux debug x86_64 build rules
 
-$(TARGET_LINUX_DEBUG): $(OBJS_LINUX_DEBUG)
+$(TARGET_LINUX_DEBUG): $(OBJS_LINUX_DEBUG) ../Engine/bin/Linux/x86_64/lib/libJint-Game-Engine_ENGINE_Linux-x86_64_Debug.a
 	@mkdir -p $(dir $@)
 	$(CXX_LINUX) $(CXXFLAGS_LINUX_DEBUG) -o $@ $^ $(LIB_DIRS_LINUX_DEBUG) $(LIBS_LINUX_DEBUG) $(LIB_DIRS_GLOBAL) $(LIBS_GLOBAL)
 
@@ -85,7 +85,7 @@ $(OBJ_DIR)/Linux/x86_64/Debug/%.o: $(SRC_DIR)/%.cpp
 
 # Windows release x86_64 build rules
 
-$(TARGET_WINDOWS_RELEASE): $(OBJS_WINDOWS_RELEASE)
+$(TARGET_WINDOWS_RELEASE): $(OBJS_WINDOWS_RELEASE) ../Engine/bin/Windows/x86_64/lib/libJint-Game-Engine_ENGINE_Windows-x86_64.a
 	@mkdir -p $(dir $@)
 	$(CXX_WINDOWS) $(CXXFLAGS_WINDOWS_RELEASE) -o $@ $^ $(LIB_DIRS_WINDOWS_RELEASE) $(LIBS_WINDOWS_RELEASE) $(LIB_DIRS_GLOBAL) $(LIBS_GLOBAL)
 
@@ -97,7 +97,7 @@ $(OBJ_DIR)/Windows/x86_64/Release/%.o: $(SRC_DIR)/%.cpp
 
 # Windows debug x86_64 build rules
 
-$(TARGET_WINDOWS_DEBUG): $(OBJS_WINDOWS_DEBUG)
+$(TARGET_WINDOWS_DEBUG): $(OBJS_WINDOWS_DEBUG) ../Engine/bin/Windows/x86_64/lib/libJint-Game-Engine_ENGINE_Windows-x86_64_Debug.a
 	@mkdir -p $(dir $@)
 	$(CXX_WINDOWS) $(CXXFLAGS_WINDOWS_DEBUG) -o $@ $^ $(LIB_DIRS_WINDOWS_DEBUG) $(LIBS_WINDOWS_DEBUG) $(LIB_DIRS_GLOBAL) $(LIBS_GLOBAL)
 

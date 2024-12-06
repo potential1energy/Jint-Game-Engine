@@ -15,20 +15,6 @@ INCLUDE_DIRS_LINUX_DEBUG = -Ideps/Linux/include
 INCLUDE_DIRS_WINDOWS_RELEASE = -Ideps/Windows/include
 INCLUDE_DIRS_WINDOWS_DEBUG = -Ideps/Windows/include
 
-# Library directories
-LIB_DIRS_GLOBAL = -Ldeps/Global/lib
-LIB_DIRS_LINUX_RELEASE = -Ldeps/Linux/lib
-LIB_DIRS_LINUX_DEBUG = -Ldeps/Linux/lib
-LIB_DIRS_WINDOWS_RELEASE = -Ldeps/Windows/lib
-LIB_DIRS_WINDOWS_DEBUG = -Ldeps/Windows/lib
-
-# Libraries
-LIBS_GLOBAL =
-LIBS_LINUX_RELEASE =
-LIBS_LINUX_DEBUG =
-LIBS_WINDOWS_RELEASE =
-LIBS_WINDOWS_DEBUG =
-
 # Preprocessor definitions
 PREPROCESSOR_DEFINITIONS_GLOBAL =
 PREPROCESSOR_DEFINITIONS_LINUX_RELEASE =
@@ -66,7 +52,7 @@ WINDOWS_DEBUG: $(TARGET_WINDOWS_DEBUG) $(CPHEADERS)
 
 $(BIN_DIR)/include/JintGE/%: $(HDR_DIR)/%
 	mkdir -p $(dir $@)
-	cp $< $@
+	cp -f $< $@
 
 # Linux release x86_64 build rules
 

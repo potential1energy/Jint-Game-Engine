@@ -1,7 +1,16 @@
 #include "Engine.hpp"
+#include "Windows.hpp"
 
 int main() {
-    printJint();
+    JintGEEn::Initalize();
 
-    return 0;
+    auto window = JintGEEn::Windows::CreateWindow("Test1 window", 0,0, 800,600);
+
+    while (true) {
+        JintGEEn::Windows::EventUpdate(window);
+    }
+
+    JintGEEn::Windows::DestroyWindow(window);
+
+    JintGEEn::Cleanup();
 }
