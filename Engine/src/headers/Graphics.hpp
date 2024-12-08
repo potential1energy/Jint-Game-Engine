@@ -7,101 +7,66 @@
 
 namespace JintGEEn {
     namespace Graphics {
-        struct vec2 {
-            float x,y;
-        };
-        struct vec3 {
-            float x,y,z;
-        };
-        struct vec4 {
-            float x,y,z,w;
-        };
-        struct dvec2 {
-            double x,y;
-        };
-        struct dvec3 {
-            double x,y,z;
-        };
-        struct dvec4 {
-            double x,y,z,w;
-        };
-        struct Colour {
-            float r,g,b,a;
-        };
+        struct Colour {float r=0,g=0,b=0,a=1;};
 
-        enum class ShaderType {
-            VERTEX, FRAGMENT
-        };
-        class Shader {
-        public:
-            // Shader Type
-            ShaderType GetShaderType();
+        void Setup();
+        void Cleanup();
 
-            // Uniforms
-            bool HasUniform(const char* uniformName);
-            unsigned int GetUniformLocation(const char* uniformName);
+        namespace Shaders {
+            struct internalShader;
 
-            void SendUniform(unsigned int location, uint8_t v);
-            void SendUniform(unsigned int location, int8_t v);
-            void SendUniform(unsigned int location, uint16_t v);
-            void SendUniform(unsigned int location, int16_t v);
-            void SendUniform(unsigned int location, uint32_t v);
-            void SendUniform(unsigned int location, int32_t v);
-            void SendUniform(unsigned int location, float v);
-            void SendUniform(unsigned int location, double v);
-            void SendUniform(unsigned int location, vec2 v);
-            void SendUniform(unsigned int location, vec3 v);
-            void SendUniform(unsigned int location, vec4 v);
-            void SendUniform(unsigned int location, dvec2 v);
-            void SendUniform(unsigned int location, dvec3 v);
-            void SendUniform(unsigned int location, dvec4 v);
-            void SendUniform(unsigned int location, Colour v);
+            enum class ShaderType {
+                VERTEX, FRAGMENT
+            };
+            class Shader {
+            public:
+                // Shader Type
+                ShaderType GetShaderType();
 
-            // Internal shader
-            void* pInternalShader;
-        };
-        struct RenderPipeline {
-            Shader* VertexShader;
-            Shader* FragmentShader;
-        };
+                void SetShaderCode(const char* shaderCode);
+                const char* GetShaderCode();
 
-        // Object creation
-        Shader* CreateShader(const char* shaderCode, ShaderType type);
+                // Internal shader
+                internalShader* pInternalShader;
+            };
+            namespace Defaults {
+                extern Shader* pDefaultVertexShader;
+                extern Shader* pDefaultFragmentShader;
+            }
 
-        // Graphics state stack
-        void Push();
-        void Pop();
-        size_t GetStackDepth();
-
-        // Graphics state
-        void BindWindow(JintGEEn::Windows::Window* pWindow);
-        JintGEEn::Windows::Window* GetBoundWindow();
-
-        void SetColour(Colour colour);
-        Colour GetColour();
-
-        void SetShader(Shader* shader, ShaderType type);
-        Shader* GetShader(ShaderType type);
-
-        void SetRenderPipeline(RenderPipeline renderPipeline);
-        RenderPipeline GetRenderPipeline();
+            Shader* CreateShader(const char* shaderCode, ShaderType type);
+            void DestoyShader(Shader* pShader);
+        }
 
         namespace Draw {
-            enum class VertexAttributeType {
-                BYTE, UBYTE,
-                SHORT, USHORT,
-                INT, UINT,
-                HALFFLOAT, FLOAT, DOUBLE
-            };
             struct VertexAttributeDiscriptor {
                 size_t index;
                 size_t size;
-                VertexAttributeType type;
                 bool normalize;
-                size_t stride, offset;
+                size_t offset;
             };
 
-            void DrawTrangles(std::vector<float>& verticies, std::vector<VertexAttributeDiscriptor>& vertexAttributeDiscriptors);
+            void Clear(Colour colour);
+            void ClearDepth();
+
+            void SwapBuffers(JintGEEn::Windows::Window* pWindow);
+    
+            void DrawTrangles(std::vector<float>& vertices, std::vector<VertexAttributeDiscriptor>& vertexAttributeDiscriptors, unsigned int stride);
+        }
+
+        namespace State {
+            void Push();
+            void Pop();
+            size_t GetStackDepth();
+
+            void BindWindow(JintGEEn::Windows::Window* pWindow);
+            JintGEEn::Windows::Window* GetBoundWindow();
+
+            void SetColour(Colour colour);
+            Colour GetColour();
+
+            void SetShader(JintGEEn::Graphics::Shaders::Shader* pShader);
+            JintGEEn::Graphics::Shaders::Shader* GetShader(JintGEEn::Graphics::Shaders::ShaderType type);
         }
     }
 }

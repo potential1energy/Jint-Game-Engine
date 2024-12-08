@@ -8,7 +8,7 @@ CXXFLAGS_WINDOWS_RELEASE = -O3 -static-libgcc -static-libstdc++
 CXXFLAGS_WINDOWS_DEBUG = -g -O0 -static-libgcc -static-libstdc++
 
 # Include directories
-INCLUDE_DIRS_GLOBAL = -Ideps/Global/include -I../Engine/bin/include/JintGE
+INCLUDE_DIRS_GLOBAL = -Ideps/Global/include -I../Engine/src/headers
 INCLUDE_DIRS_LINUX_RELEASE = -Ideps/Linux/include
 INCLUDE_DIRS_LINUX_DEBUG = -Ideps/Linux/include
 INCLUDE_DIRS_WINDOWS_RELEASE = -Ideps/Windows/include
@@ -23,8 +23,8 @@ LIB_DIRS_WINDOWS_DEBUG = -Ldeps/Windows/lib -L../Engine/bin/Windows/x86_64/lib
 
 # Libraries
 LIBS_GLOBAL =
-LIBS_LINUX_RELEASE = -lJint-Game-Engine_ENGINE_Linux-x86_64 -lX11 -lglad -lGL -lGLX
-LIBS_LINUX_DEBUG = -lJint-Game-Engine_ENGINE_Linux-x86_64_Debug -lX11 -lglad -lGL -lGLX
+LIBS_LINUX_RELEASE = -lJint-Game-Engine_ENGINE_Linux-x86_64 -lX11 -lGL -lGLX
+LIBS_LINUX_DEBUG = -lJint-Game-Engine_ENGINE_Linux-x86_64_Debug -lX11 -lGL -lGLX
 LIBS_WINDOWS_RELEASE = -lJint-Game-Engine_ENGINE_Windows-x86_64
 LIBS_WINDOWS_DEBUG = -lJint-Game-Engine_ENGINE_Windows-x86_64_Debug
 
